@@ -23,6 +23,11 @@ CONFIGS = [
         "channel_id": "UCU9eTpOS-sQQu4BzJ88IU8g",
         "post_id": "1888318045958197622",
         "processed_file": "processed_gvngmix.json"
+    },
+    {
+        "channel_id": "UC9JwZiaWudOWmw2TOjWyyVg",
+        "post_id": "3395509229888708702",
+        "processed_file": "processed_soundeomixtape.json"
     }
 ]
 
@@ -92,7 +97,12 @@ def process_config(service, config):
                 count=1
             )
             
-            print(f"Знайдено нове відео: {title} ({video_id})")
+            
+            try:
+                print(f"Знайдено нове відео: {title} ({video_id})")
+            except UnicodeEncodeError:
+                print(f"Знайдено нове відео: [Title contains emojis] ({video_id})")
+                
             has_new_videos = True
             new_processed.add(video_id)
             
