@@ -38,6 +38,11 @@ CONFIGS = [
         "channel_id": "UCMAtjPfmAAel5ekuzz8n7Dw",
         "post_id": "6052281470851197159",
         "processed_file": "processed_flywithme.json"
+    },
+    {
+        "channel_id": "UCT_v9nbT8As4mclOg_WK1-w",
+        "post_id": "163317930566413853",
+        "processed_file": "processed_missdeep.json"
     }
 ]
 
