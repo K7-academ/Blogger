@@ -88,8 +88,16 @@ def process_config(service, config):
             
             # Оновлюємо мініатюру посту (сховане зображення для прев'ю)
             current_content = re.sub(
-                r'<img src="https://img\.youtube\.com/vi/[^/]+/maxresdefault\.jpg"',
-                f'<img src="https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"',
+                r'<img src="https://img\.youtube\.com/vi/[^/]+/(maxresdefault|hqdefault|sddefault)\.jpg"',
+                f'<img src="https://img.youtube.com/vi/{video_id}/\\g<1>.jpg"',
+                current_content,
+                count=1
+            )
+            
+            # Якщо є блок div з youtube-cover
+            current_content = re.sub(
+                r'<div class="youtube-cover" style="display:none;">[^<]+</div>',
+                f'<div class="youtube-cover" style="display:none;">{video_id}</div>',
                 current_content,
                 count=1
             )
