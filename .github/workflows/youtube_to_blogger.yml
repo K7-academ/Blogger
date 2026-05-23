@@ -2,7 +2,7 @@ name: YouTube to Blogger Parser
 
 on:
   schedule:
-    - cron: '0 * * * *' # Запуск щогодини (можна змінити)
+    - cron: '0 5,17 * * *' # Запуск двічі на добу (08:00 та 20:00 за Києвом влітку)
   workflow_dispatch: # Дозволяє запускати вручну з вкладки Actions
 
 jobs:
