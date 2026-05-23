@@ -59,6 +59,11 @@ CONFIGS = [
         "channel_id": "UCxs8r_GaKqb3RUZjcmwNxIA",
         "post_id": "3593205608361563180",
         "processed_file": "processed_infinityvideohub.json"
+    },
+    {
+        "channel_id": "UChmbvGtjGOFvNE-IAHbAZZw",
+        "post_id": "5881969155327598854",
+        "processed_file": "processed_dapadeep.json"
     }
 ]
 
