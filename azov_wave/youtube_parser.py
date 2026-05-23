@@ -18,6 +18,11 @@ CONFIGS = [
         "channel_id": "UCkoaodpQjvGZ4vjotUs9Gjw",
         "post_id": "4880300034766882371",
         "processed_file": "processed_hellfxrmance.json"
+    },
+    {
+        "channel_id": "UCU9eTpOS-sQQu4BzJ88IU8g",
+        "post_id": "1888318045958197622",
+        "processed_file": "processed_gvngmix.json"
     }
 ]
 
