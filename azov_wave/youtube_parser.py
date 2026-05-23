@@ -48,6 +48,11 @@ CONFIGS = [
         "channel_id": "UCT8ki44uXsJC8YMoc1TKD4Q",
         "post_id": "3018430003757041212",
         "processed_file": "processed_hustlemusichub.json"
+    },
+    {
+        "channel_id": "UCF4d6hqDK3wZ6_Vgk6g-ImQ",
+        "post_id": "9156214486833168775",
+        "processed_file": "processed_gravityrecordings.json"
     }
 ]
 
