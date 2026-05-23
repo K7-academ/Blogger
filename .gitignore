@@ -3,4 +3,4 @@ __pycache__/
 *.txt
 !channels.txt
 !requirements.txt
-!processed.json
+!processed*.json

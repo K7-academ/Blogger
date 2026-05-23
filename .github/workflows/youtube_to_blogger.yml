@@ -36,7 +36,7 @@ jobs:
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
-        git add processed.json || true
+        git add processed*.json || true
         git diff --quiet && git diff --staged --quiet || git commit -m "Оновлено історію оброблених відео"
         git push
       working-directory: azov_wave
