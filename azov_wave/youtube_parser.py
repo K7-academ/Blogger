@@ -53,6 +53,11 @@ CONFIGS = [
         "channel_id": "UCF4d6hqDK3wZ6_Vgk6g-ImQ",
         "post_id": "9156214486833168775",
         "processed_file": "processed_gravityrecordings.json"
+    },
+    {
+        "channel_id": "UCxs8r_GaKqb3RUZjcmwNxIA",
+        "post_id": "3593205608361563180",
+        "processed_file": "processed_infinityvideohub.json"
     }
 ]
 
