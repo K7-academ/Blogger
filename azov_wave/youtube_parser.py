@@ -87,6 +87,14 @@ def main():
                 continue
                 
             title = entry.title
+            # Оновлюємо мініатюру посту (сховане зображення для прев'ю)
+            current_content = re.sub(
+                r'<img src="https://img\.youtube\.com/vi/[^/]+/maxresdefault\.jpg"',
+                f'<img src="https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"',
+                current_content,
+                count=1
+            )
+            
             print(f"Знайдено нове відео: {title} ({video_id})")
             has_new_videos = True
             
