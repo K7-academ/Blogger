@@ -1,0 +1,37 @@
+name: YouTube to Blogger Parser
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Запуск щогодини (можна змінити)
+  workflow_dispatch: # Дозволяє запускати вручну з вкладки Actions
+
+jobs:
+  run-parser:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Перевірка коду (Checkout)
+      uses: actions/checkout@v4
+
+    - name: Налаштування Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Встановлення залежностей
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Запуск парсера
+      env:
+        TOKEN_JSON: ${{ secrets.TOKEN_JSON }}
+      run: python youtube_parser.py
+
+    - name: Збереження історії (Commit & Push)
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add processed.json
+        git diff --quiet && git diff --staged --quiet || git commit -m "Оновлено історію оброблених відео"
+        git push
