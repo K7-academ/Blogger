@@ -3,6 +3,7 @@ import json
 import time
 import re
 import feedparser
+import requests
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
@@ -72,6 +73,15 @@ def get_blogger_service():
     creds = Credentials.from_authorized_user_file('token.json', ['https://www.googleapis.com/auth/blogger'])
     return build('blogger', 'v3', credentials=creds)
 
+def is_short(video_id):
+    try:
+        url = f"https://www.youtube.com/shorts/{video_id}"
+        response = requests.head(url, allow_redirects=False, timeout=5)
+        return response.status_code == 200
+    except Exception as e:
+        print(f"Помилка перевірки Shorts для {video_id}: {e}")
+        return False
+
 def process_config(service, config):
     channel_id = config['channel_id']
     post_id = config['post_id']
@@ -106,6 +116,12 @@ def process_config(service, config):
         for entry in entries:
             video_id = entry.yt_videoid
             if video_id in new_processed or video_id in current_content:
+                new_processed.add(video_id)
+                continue
+                
+            # Перевірка на YouTube Shorts
+            if is_short(video_id):
+                print(f"Пропускаємо Short відео: {video_id}")
                 new_processed.add(video_id)
                 continue
                 
