@@ -28,6 +28,11 @@ CONFIGS = [
         "channel_id": "UC9JwZiaWudOWmw2TOjWyyVg",
         "post_id": "3395509229888708702",
         "processed_file": "processed_soundeomixtape.json"
+    },
+    {
+        "channel_id": "UC-pVYBvaCW3Puj90iEQ03Uw",
+        "post_id": "576072813965804678",
+        "processed_file": "processed_ghettomixtape.json"
     }
 ]
 
