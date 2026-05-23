@@ -82,7 +82,8 @@ def main():
         
         for entry in entries:
             video_id = entry.yt_videoid
-            if video_id in new_processed:
+            if video_id in new_processed or video_id in current_content:
+                new_processed.add(video_id)
                 continue
                 
             title = entry.title
