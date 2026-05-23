@@ -43,6 +43,11 @@ CONFIGS = [
         "channel_id": "UCT_v9nbT8As4mclOg_WK1-w",
         "post_id": "163317930566413853",
         "processed_file": "processed_missdeep.json"
+    },
+    {
+        "channel_id": "UCT8ki44uXsJC8YMoc1TKD4Q",
+        "post_id": "3018430003757041212",
+        "processed_file": "processed_hustlemusichub.json"
     }
 ]
 
