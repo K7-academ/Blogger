@@ -33,6 +33,11 @@ CONFIGS = [
         "channel_id": "UC-pVYBvaCW3Puj90iEQ03Uw",
         "post_id": "576072813965804678",
         "processed_file": "processed_ghettomixtape.json"
+    },
+    {
+        "channel_id": "UCMAtjPfmAAel5ekuzz8n7Dw",
+        "post_id": "6052281470851197159",
+        "processed_file": "processed_flywithme.json"
     }
 ]
 
