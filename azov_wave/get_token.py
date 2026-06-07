@@ -20,7 +20,7 @@ def main():
     with open('token.json', 'w') as token_file:
         token_file.write(creds.to_json())
     
-    print("\n✅ Успіх! Файл 'token.json' створено.")
+    print("\n[+] Успіх! Файл 'token.json' створено.")
     print("Тепер ви можете скопіювати вміст 'token.json' і додати його у GitHub Secrets.")
 
 if __name__ == '__main__':
