@@ -1,0 +1,20 @@
+{
+  "name": "Azov Wave",
+  "short_name": "Azov Wave",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00abab",
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/gh/K7-academ/Blogger@main/azov_wave/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/K7-academ/Blogger@main/azov_wave/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
