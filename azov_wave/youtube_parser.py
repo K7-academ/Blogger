@@ -2,6 +2,7 @@ import os
 import json
 import time
 import re
+from datetime import datetime, timezone
 import feedparser
 import requests
 from google.oauth2.credentials import Credentials
@@ -100,7 +101,7 @@ def process_config(service, config):
         with open(processed_file, 'r', encoding='utf-8') as f:
             processed_videos = set(json.load(f))
             
-    # Отримуємо RSS стрічку
+    # Отримуємо RSS стрічку каналу YouTube
     feed_url = f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}"
     feed = feedparser.parse(feed_url)
     
@@ -132,15 +133,15 @@ def process_config(service, config):
                 
             title = entry.title
             
-            # Оновлюємо мініатюру посту (сховане зображення для прев'ю)
+            # Оновлюємо посилання на обкладинку YouTube (працює і з <img id="youtube-cover", і зі старими тегами)
             current_content = re.sub(
-                r'<img src="https://img\.youtube\.com/vi/[^/]+/(maxresdefault|hqdefault|sddefault)\.jpg"',
-                f'<img src="https://img.youtube.com/vi/{video_id}/\\g<1>.jpg"',
+                r'(<img[^>]*src="https://img\.youtube\.com/vi/)[^/]+/(maxresdefault|hqdefault|sddefault)\.jpg"',
+                f'\\g<1>{video_id}/\\g<2>.jpg"',
                 current_content,
                 count=1
             )
             
-            # Якщо є блок div з youtube-cover
+            # Якщо є старий блок div з youtube-cover
             current_content = re.sub(
                 r'<div class="youtube-cover" style="display:none;">[^<]+</div>',
                 f'<div class="youtube-cover" style="display:none;">{video_id}</div>',
@@ -148,14 +149,13 @@ def process_config(service, config):
                 count=1
             )
             
-            # Додаємо video_id на початок масиву
+            # Додаємо новий video_id на початок масиву відтворення
             current_content = re.sub(
                 r'(const\s+videoIds\s*=\s*\[\s*)', 
                 r'\g<1>"' + video_id + '", ', 
                 current_content,
                 count=1
             )
-            
             
             try:
                 print(f"Знайдено нове відео: {title} ({video_id})")
@@ -166,13 +166,17 @@ def process_config(service, config):
             new_processed.add(video_id)
             
         if has_new_videos:
+            # Отримуємо поточний час у форматі ISO 8601 (UTC)
+            now_iso = datetime.now(timezone.utc).isoformat()
+
             body = {
                 'title': post.get('title'),
                 'content': current_content,
-                'labels': post.get('labels', [])
+                'labels': post.get('labels', []),
+                'published': now_iso  # Автоматично піднімає пост на найперше місце блогу
             }
             service.posts().update(blogId=BLOG_ID, postId=post_id, body=body).execute()
-            print("Оновлення успішне!")
+            print(f"Оновлення успішне! Публікацію піднято на 1-ше місце (дата: {now_iso})")
             
             with open(processed_file, 'w', encoding='utf-8') as f:
                 json.dump(list(new_processed), f, indent=2)
